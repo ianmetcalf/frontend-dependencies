@@ -79,7 +79,7 @@ Your target folder in your project will look like:
       "turbolinks": {
           // alternative to 'version`: specifie git url, tarball url, tarball file, folder
           "url": "git://github.com/turbolinks/turbolinks.git",     
-          "src": "{src,LICENSE}", // copy multiple files
+          "src": ["dist/*","LICENSE"], // copy multiple files
           "target": "static/turbo" // specific target path
       }
     }
@@ -167,7 +167,7 @@ The source file(s) or folder(s) within each npm package to be copied.
    "src": "dist/*"
 
    // option 3: copy serveral files or folders
-   "src": "{index.js,index.css}"
+   "src": ["index.js","index.css"]
 ```
 
 #### target

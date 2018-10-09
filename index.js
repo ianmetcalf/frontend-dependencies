@@ -74,13 +74,15 @@ function frontendDependencies(workDir) {
 
         // prepare folder pathes
         var modulePath = getAndValidateModulePath(workDir, pkgName)
-        var sourceFilesPath = path.join(modulePath, pkg.src || "/*");
+        var sourceFilePaths = [].concat(pkg.src || "/*").map(function (src) {
+          return path.join(modulePath, src);
+        });
         //  eg.: /opt/myProject/node_modules/jquery/dist/*
         //  eg.: /opt/myProject/node_modules/jquery/dist/{file1,file2}
         var targetPath = getAndValidateTargetPath(pkg, packageJson, workDir, pkgName);
 
 
-        copyFiles(sourceFilesPath, targetPath, pkgName, namespaced);
+        copyFiles(sourceFilePaths, targetPath, pkgName, namespaced);
     }
 
 
@@ -160,14 +162,14 @@ function getAndValidateTargetPath(pkg, packageJson, workDir, pkgName){
 }
 
 
-function copyFiles (sourceFilesPath, targetPath, pkgName, namespaced){
+function copyFiles (sourceFilePaths, targetPath, pkgName, namespaced){
 
    // put target into a subfolder with package name?
    if (namespaced) targetPath = path.join(targetPath, pkgName);
 
    shell.mkdir("-p", targetPath);
    log("copy " + pkgName + " to " + targetPath);
-   shell.cp("-r", sourceFilesPath, targetPath);
+   shell.cp("-r", sourceFilePaths, targetPath);
 }
 
 function fail(reason) {

@@ -1,9 +1,5 @@
 /node_modules
 
-/test/test1/static/build/**
-/test/test1/node_modules
-/test/test1/package-lock.json
-
-/test/test2/static/build/**
-/test/test2/node_modules
-/test/test2/package-lock.json
+/test/**/static/build/**
+/test/**/node_modules
+/test/**/package-lock.json
